@@ -1,0 +1,12 @@
+.vscode/
+javascript/node_modules/
+javascript/package-lock.json
+kotlin/.gradle/
+kotlin/build/
+kotlin/.idea/
+swift/.build/
+swift/.swiftpm/
+swift/.vscode/
+swift/package.resolved
+.DS_Store
+.idea/
