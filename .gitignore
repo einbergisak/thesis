@@ -7,6 +7,6 @@ kotlin/.idea/
 swift/.build/
 swift/.swiftpm/
 swift/.vscode/
-swift/package.resolved
+swift/Package.resolved
 .DS_Store
 .idea/
