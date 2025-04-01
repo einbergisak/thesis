@@ -3,9 +3,6 @@ import PackageDescription
 
 let package = Package(
     name: "swift",
-    platforms: [
-       .macOS(.v13)
-    ],
     dependencies: [
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.114.1"),
@@ -19,14 +16,6 @@ let package = Package(
                 .product(name: "Vapor", package: "vapor"),
                 .product(name: "NIOCore", package: "swift-nio"),
                 .product(name: "NIOPosix", package: "swift-nio"),
-            ],
-            swiftSettings: swiftSettings
-        ),
-        .testTarget(
-            name: "AppTests",
-            dependencies: [
-                .target(name: "App"),
-                .product(name: "VaporTesting", package: "vapor"),
             ],
             swiftSettings: swiftSettings
         )
