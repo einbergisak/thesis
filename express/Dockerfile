@@ -1,5 +1,5 @@
 # Build image
-FROM --platform=linux/amd64 ubuntu:noble AS build
+FROM ubuntu:noble AS build
 
 # Install OS updates
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
@@ -28,7 +28,7 @@ WORKDIR /app
 RUN npm install
 
 # Run image
-FROM --platform=linux/amd64 ubuntu:noble
+FROM ubuntu:noble
 
 # Make sure all system packages are up to date
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
