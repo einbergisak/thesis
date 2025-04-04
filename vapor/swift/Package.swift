@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "swift",
+    platforms: [.macOS("13")], // For local testing before Docker deployment
     dependencies: [
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.114.1"),

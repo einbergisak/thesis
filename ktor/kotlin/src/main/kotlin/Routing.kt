@@ -9,5 +9,9 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello World!")
         }
+        get("/lipsum") {
+            val lipsumText = java.io.File("/tmp/lipsum.txt").readText()
+            call.respondText(lipsumText)
+        }
     }
 }
