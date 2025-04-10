@@ -10,3 +10,4 @@ vapor/swift/.vscode/
 vapor/swift/Package.resolved
 .DS_Store
 .idea/
+jsconfig.json
