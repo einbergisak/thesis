@@ -10,15 +10,15 @@ func routes(_ app: Application) throws {
         return try await req.fileio.asyncStreamFile(at: filePath)
     }
 
-    app.get("json") { req async throws -> EchoData in
+    app.post("json") { req async throws -> Response in
         do {
-            // Decode JSON from the request body
+            // Receive and deserialize JSON into EchoData
             let json = try req.content.decode(EchoData.self)
 
-            // Vapor automatically reencodes data as EchoData implements the Codable and Content protocols.
-            return json
+            // Serialize EchoData and respond
+            return try await json.encodeResponse(for: req)
         } catch {
-            throw Abort(.badRequest, reason: "Invalid request")
+            throw Abort(.badRequest, reason: "Invalid JSON")
         }
     }
 }
