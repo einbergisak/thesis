@@ -1,4 +1,5 @@
 import Vapor
+import FluentPostgresDriver
 
 func routes(_ app: Application) throws {
     app.get("hello") { req async -> String in
@@ -22,10 +23,11 @@ func routes(_ app: Application) throws {
         }
     }
     
-    app.get("postgres") { req async throws -> DBTable in
-        let b = try await DBTable.query(on: req.db).first()!
-        print(b.description)
-        return b
+    app.get("postgres") { req async throws -> Response in
+        guard let postgres = req.db(.psql) as? (any PostgresDatabase) else {
+            throw Abort(.internalServerError)
+        }
+        return try await postgres.simpleQuery("SELECT * FROM tableone").get().description.encodeResponse(for: req)
     }
     
     app.get("fibonacci") {req async throws -> Int in
