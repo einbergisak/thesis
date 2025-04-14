@@ -19,7 +19,7 @@ RUN wget https://downloads.apache.org//jmeter/binaries/apache-jmeter-${JMETER_VE
     && rm apache-jmeter-${JMETER_VERSION}.tgz
 
 # Copy test plan into container
-COPY testplan.jmx /testplan.jmx
+COPY newplan.jmx /newplan.jmx
 
 # Run JMeter against localhost:8080 and save results to a CSV file
-CMD ["jmeter", "-n", "-t", "/testplan.jmx", "-l", "/results.csv", "-JserverHost=localhost", "-JserverPort=8080"]
+#CMD ["jmeter", "-n", "-t", "/testplan.jmx", "-l", "/results.csv", "-JserverHost=localhost", "-JserverPort=8080"]
