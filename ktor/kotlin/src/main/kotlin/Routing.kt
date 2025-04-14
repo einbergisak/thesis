@@ -11,8 +11,8 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.jetbrains.exposed.sql.selectAll
-import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.io.File
 
 fun Application.configureRouting() {
     routing {
@@ -20,8 +20,7 @@ fun Application.configureRouting() {
             call.respondText("Hello World!")
         }
         get("/lipsum") {
-            val lipsumText = java.io.File("/tmp/lipsum.txt").readText()
-            call.respondText(lipsumText)
+            call.respondFile(File("/tmp/lipsum.txt"))
         }
         post("/json") {
             try {
