@@ -55,6 +55,14 @@ app.get("/postgres", (req, res) => {
   });
 });
 
+app.get("/fibonacci", (req, res) => {
+  const fib = (n) => {
+    if (n <= 1) return n;
+    return fib(n - 1) + fib(n - 2);
+  };
+  res.json(fib(40));
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
