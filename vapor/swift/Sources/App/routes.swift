@@ -27,4 +27,16 @@ func routes(_ app: Application) throws {
         print(b.description)
         return b
     }
+    
+    app.get("fibonacci") {req async throws -> Int in
+        func fib(_ n: Int) -> Int {
+            if n <= 1 {
+               return n
+            } else {
+                return fib(n - 1) + fib(n - 2)
+            }
+        }
+        
+        return fib(40)
+    }
 }
