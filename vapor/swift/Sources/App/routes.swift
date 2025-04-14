@@ -21,4 +21,10 @@ func routes(_ app: Application) throws {
             throw Abort(.badRequest, reason: "Invalid JSON")
         }
     }
+    
+    app.get("postgres") { req async throws -> DBTable in
+        let b = try await DBTable.query(on: req.db).first()!
+        print(b.description)
+        return b
+    }
 }
