@@ -1,6 +1,16 @@
 const express = require("express");
+const { Pool } = require("pg");
 const app = express();
 const port = 8080;
+
+// Configure PostgreSQL connection
+const connection = new Pool({
+  user: "postgres",
+  host: "localhost",
+  database: "postgres",
+  password: "password",
+  port: 5432,
+});
 
 app.get("/", (req, res) => {
   res.send("Hello world!");
@@ -33,6 +43,16 @@ app.post("/json", (req, res) => {
   } catch (error) {
     res.status(400).send("Invalid request");
   }
+});
+
+app.get("/postgres", (req, res) => {
+  connection.query("SELECT * FROM tableone", (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.json(result.rows);
+    }
+  });
 });
 
 app.listen(port, () => {
