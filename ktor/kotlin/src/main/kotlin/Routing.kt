@@ -46,5 +46,16 @@ fun Application.configureRouting() {
                 call.respondText("${e.message}", status = io.ktor.http.HttpStatusCode.InternalServerError)
             }
         }
+
+        get("/fibonacci") {
+            fun fib(n: Int): Int {
+                if (n <= 1) {
+                    return n
+                } else {
+                    return fib(n - 1) + fib(n - 2)
+                }
+            }
+            call.respond(fib(40))
+        }
     }
 }
