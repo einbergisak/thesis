@@ -5,6 +5,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG">
@@ -20,7 +22,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /lipsum.txt">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /lipsum.txt" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">8080</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -46,7 +48,137 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;message&quot;:&quot;hellooo&quot;}</stringProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;id&quot;: 1,&#xd;
+  &quot;message&quot;: &quot;Curabitur vel eleifend est. Ut dignissim nunc lacinia, pellentesque libero id, convallis lorem. Phasellus sodales felis ac diam egestas sodales. Integer tristique molestie tellus non feugiat. Integer iaculis lacinia quam, eget vehicula nunc consectetur eget. Phasellus massa mauris, mollis sed ligula ac, volutpat ultrices leo. In hac habitasse platea dictumst. Aenean id metus vitae felis cursus commodo et vestibulum dui. Sed ac ipsum feugiat, mollis justo ut, scelerisque libero. Praesent vehicula lobortis mi non vulputate. Pellentesque nec lacus ut ligula interdum viverra nec et augue. Aenean egestas justo sit amet maximus auctor. Phasellus sem nunc, rutrum sed nisi quis, luctus tincidunt purus. Suspendisse sit amet gravida velit. Nunc nibh orci, tincidunt ac ex sit amet, lacinia fringilla orci. Integer dignissim egestas eleifend. Vivamus vitae nibh eget quam pharetra sollicitudin. Maecenas rhoncus metus sed massa dignissim, vitae maximus elit vulputate. Curabitur tempus tellus at metus rutrum, vitae laoreet diam efficitur. Mauris et commodo libero. Integer bibendum eleifend felis a efficitur. Donec feugiat eu eros in interdum. Aenean sed ipsum lobortis, bibendum libero sed, malesuada nunc. In bibendum vel metus quis vehicula. In cursus urna non est condimentum, at pharetra lectus laoreet. Suspendisse nibh risus, aliquam vitae mi eu, placerat cursus leo. Donec nec mauris at dui tempor molestie. Praesent sollicitudin interdum sapien, eget varius orci interdum sed. Cras risus ipsum, imperdiet nec ligula at, tempus pulvinar leo. Aliquam eu molestie lacus, a pellentesque nunc. Curabitur tincidunt tempor dictum. In ornare mi sit amet risus sodales aliquet. Duis iaculis ante quam, a ultricies purus tempus nec. Aenean ut nulla et orci consequat eleifend. In hac habitasse platea dictumst. Ut blandit vel purus at posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus maximus fringilla orci, sit amet elementum nunc gravida quis. Integer aliquet turpis vitae ullamcorper rhoncus. Vivamus sit amet magna eu dolor scelerisque tincidunt quis et tortor. Aenean tincidunt, nunc et rhoncus tempor, urna ante blandit leo, eu fermentum leo nibh vitae diam. Donec porta eros lacus, a varius felis lobortis non. Quisque pellentesque dui sit amet lectus fermentum ornare. Duis in sem a eros vulputate pharetra. Etiam rhoncus auctor metus vitae mollis. Vestibulum ut rhoncus nulla. Nullam lobortis volutpat est, at bibendum leo sodales sit amet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent augue nisl, pharetra non molestie ac, consectetur vitae enim. Aenean luctus a quam vitae auctor. Vivamus dignissim nunc a dui interdum auctor.&quot;,&#xd;
+  &quot;innerDataList&quot;: [&#xd;
+    {&#xd;
+      &quot;id&quot;: 101,&#xd;
+      &quot;number&quot;: 12345.6789,&#xd;
+      &quot;itemList&quot;: [&#xd;
+        {&#xd;
+          &quot;id&quot;: 1001,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Lorem ipsum dolor sit amet.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1002,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;Praesent vehicula lobortis mi non vulputate. Pellentesque nec lacus ut ligula interdum viverra nec et augue. Aenean egestas justo sit amet maximus auctor. Phasellus sem nunc, rutrum sed nisi quis, luctus tincidunt purus. Suspendisse sit amet gravida velit. Nunc nibh orci, tincidunt ac ex sit amet, lacinia fringilla orci. Integer dignissim egestas eleifend. Vivamus vitae nibh eget quam pharetra sollicitudin. Maecenas rhoncus metus sed massa dignissim, vitae maximus elit vulputate. Curabitur tempus tellus at metus rutrum, vitae laoreet diam efficitur. Mauris et commodo libero. &quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1003,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Phasellus lectus eros, condimentum eget mauris in, sollicitudin elementum urna. Nam justo tortor, vehicula vitae ex at, posuere semper justo. Praesent efficitur facilisis tortor varius rhoncus. Etiam efficitur magna a enim interdum ullamcorper. Phasellus in nisi ut quam malesuada porta. Nunc sit amet euismod metus. Mauris dapibus ex quis eros blandit euismod. Nam accumsan leo felis, eget molestie diam placerat non. Etiam pretium efficitur mauris vel auctor. Sed in ipsum porttitor, elementum metus non, tincidunt eros. Suspendisse potenti. Nullam sed lorem ac libero molestie dapibus eget quis ligula. Etiam placerat orci eros, ac lobortis est interdum ut.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1004,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;Aliquam ac dignissim nunc, id faucibus sem. Mauris non massa a erat mattis consectetur. Nunc suscipit purus et quam congue, ac feugiat dolor placerat. Aenean in consequat ligula. Morbi nec elit eu eros auctor maximus. Curabitur vestibulum felis eu volutpat aliquam. Fusce vitae magna bibendum, porta augue sed, varius est. Etiam tellus ex, consectetur quis tortor at, vulputate laoreet augue. Praesent efficitur non turpis vel tristique. Donec mollis accumsan lectus, in feugiat lectus volutpat sit amet. Ut a sodales tellus.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1005,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.&quot;&#xd;
+        }&#xd;
+      ]&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;id&quot;: 102,&#xd;
+      &quot;number&quot;: 987.654321,&#xd;
+      &quot;itemList&quot;: [&#xd;
+        {&#xd;
+          &quot;id&quot;: 1006,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;Aliquam malesuada sapien eu lacus congue malesuada. Suspendisse fermentum nisi odio, vel gravida mi tincidunt vel. Integer tristique, odio id sodales efficitur, nisl justo viverra elit, in euismod lectus elit ac quam. Vestibulum volutpat lacus sed elit egestas, eu bibendum lectus tempus. In et tellus urna. Nullam eu malesuada ligula, vel molestie nunc. Fusce pulvinar dolor id elit venenatis convallis. Praesent aliquam at leo ac euismod.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1007,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Nam diam mauris, convallis sit amet felis volutpat, vehicula pharetra dolor. Proin id justo a ex blandit vulputate. Praesent pretium suscipit purus, vel sagittis urna imperdiet id. Phasellus scelerisque, purus sit amet porta ornare, sapien velit maximus libero, vitae commodo odio nisi ac ex. Nulla nec mauris sagittis, interdum ligula a, gravida mauris. Praesent pretium a dolor id pharetra. Sed imperdiet facilisis est, id commodo massa varius vel. Donec et semper nibh. Etiam vel felis porta, fringilla dolor ultrices, tincidunt augue. Quisque aliquet lacus ac dolor ullamcorper congue. Curabitur semper in lorem id sodales. Curabitur at faucibus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis magna quis lacus ultricies dapibus. Morbi quis urna massa.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1008,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;Fusce turpis metus, sodales a pharetra non, blandit non risus. Fusce in nulla non sapien maximus lobortis sed vel risus. Aliquam in dolor sed urna consequat fringilla. Ut ac erat massa. Duis nec justo vitae justo laoreet aliquet. Donec suscipit magna nibh, a pharetra nisi porttitor id. Ut ut turpis rhoncus enim aliquam sodales id non odio. Nullam ornare elementum lectus sed convallis. Phasellus quis feugiat elit. Aenean sit amet dolor ut lacus varius pellentesque quis non magna. Etiam at sodales nisl. Nunc pellentesque eros sapien, sit amet tincidunt sapien iaculis vitae.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1009,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Sed hendrerit justo ac maximus efficitur. In non metus quis justo fringilla varius eget at ligula. Proin ultricies rhoncus ex, ullamcorper egestas ante finibus eget. Sed eleifend, purus finibus luctus efficitur, quam nunc euismod ante, non sagittis leo elit ac lorem. In hac habitasse platea dictumst. Nam non dui sed sem varius condimentum. Quisque a dolor faucibus, laoreet elit in, tempor nisi. Sed lacus mauris, feugiat id porttitor id, euismod eget ligula. Mauris ultricies nec odio non tempus.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1010,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;Quisque sed dapibus felis. Nam in velit sed arcu gravida bibendum. Nunc tincidunt egestas arcu quis dapibus. Aliquam consequat mauris magna, id convallis tellus rhoncus nec. In iaculis lacinia nunc eget scelerisque. Nunc et enim at libero suscipit tempus in at purus. Proin pharetra orci non auctor auctor. Morbi et urna quis lorem venenatis interdum eu nec velit. Integer eget ultricies orci. Aliquam faucibus enim vel tortor semper, quis finibus orci tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1011,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Integer maximus semper nisi, vel consequat velit accumsan ac. Sed cursus dui at risus egestas, laoreet fermentum urna pharetra. Donec dapibus nisl massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse scelerisque nec justo eu imperdiet. Suspendisse potenti. Aenean maximus elementum sapien id faucibus. Fusce non euismod mi, a malesuada risus. Maecenas sed convallis massa. Maecenas vel congue ante. Curabitur gravida turpis ac metus finibus, et convallis ipsum finibus. Sed et ante faucibus, bibendum sapien ac, semper sapien. Mauris dapibus, nisi nec eleifend ultrices, felis diam egestas quam, vel vestibulum lorem dolor ut urna. Curabitur risus quam, suscipit nec pretium vitae, accumsan eu ligula.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1012,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;Vivamus rhoncus diam eget dui molestie dignissim. Aliquam vel tellus neque. Vestibulum aliquet leo auctor, finibus arcu ut, pulvinar purus. Pellentesque eros ipsum, condimentum eu diam sit amet, facilisis ornare neque. Cras pulvinar dolor vitae orci feugiat posuere. Vestibulum eleifend augue bibendum fermentum malesuada. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam lobortis maximus luctus. Proin sed velit varius, dignissim nisl quis, elementum arcu. Quisque accumsan sit amet enim vitae efficitur. Ut ac enim ipsum. Integer egestas, magna id imperdiet viverra, ante quam pharetra purus, a aliquam ante augue et justo. Ut risus nibh, venenatis non rhoncus a, condimentum vel tortor. Nulla tristique, nisi sed ultrices ullamcorper, neque mauris pellentesque tellus, a faucibus risus leo a ipsum. Fusce ac augue sed justo lobortis tincidunt ac rhoncus leo.&quot;&#xd;
+        }&#xd;
+      ]&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;id&quot;: 103,&#xd;
+      &quot;number&quot;: 3.1415926535,&#xd;
+      &quot;itemList&quot;: [&#xd;
+        {&#xd;
+          &quot;id&quot;: 1013,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Phasellus posuere molestie ante sit amet congue. Integer velit nisl, aliquam quis consectetur sit amet, facilisis a erat. Morbi vehicula aliquam ligula, eget feugiat ex cursus vitae. Donec eu dui eu lorem varius aliquet. Etiam non lectus pellentesque, rutrum lorem et, imperdiet nibh. Vestibulum mi libero, ultrices egestas volutpat et, tristique nec diam. Cras ultrices sed purus vitae vulputate. Duis pellentesque luctus tellus sit amet hendrerit. Nullam hendrerit, ante in congue auctor, ex leo imperdiet metus, sit amet condimentum diam turpis eget augue. Sed porttitor at mauris a iaculis. Mauris imperdiet nisi dictum purus mattis, eget porta tellus faucibus. Suspendisse non mollis dui. Fusce vitae porttitor lacus. Duis imperdiet elit elementum leo tempor feugiat.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1014,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;In varius elit id pharetra semper.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1015,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Quod etsi ingeniis magnis praediti quidam dicendi copiam sine ratione consequuntur, ars tamen est dux certior quam natura. Sed tamen omne, quod de re bona dilucide dicitur, mihi praeclare dici videtur.&quot;&#xd;
+        }&#xd;
+      ]&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;id&quot;: 104,&#xd;
+      &quot;number&quot;: 1.0,&#xd;
+      &quot;itemList&quot;: [&#xd;
+        {&#xd;
+          &quot;id&quot;: 1016,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;Quisque maximus nunc non metus tristique, at luctus nisl tempor. Vestibulum volutpat leo nisl, vel congue nulla vehicula vitae. Curabitur tincidunt enim ac quam vulputate, sit amet laoreet nulla molestie.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1017,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Lorem.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1018,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;Vestibulum mattis vehicula molestie. Vestibulum ut viverra odio. Duis id tortor sed eros volutpat facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus nec lorem posuere, bibendum ante accumsan, laoreet quam. Morbi pharetra tincidunt lacinia.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1019,&#xd;
+          &quot;boolean&quot;: true,&#xd;
+          &quot;string&quot;: &quot;Curabitur sodales eros risus, sit amet sodales leo convallis ac. Morbi ac fringilla nisi. Aenean non efficitur ligula, sit amet iaculis nisi. Proin ut nisl rutrum, varius lorem sit amet, pulvinar odio. Cras faucibus nisi eget lacus pharetra, vel vestibulum tortor imperdiet. Suspendisse potenti. Nunc imperdiet sodales tincidunt. Pellentesque in auctor tellus. Duis posuere diam sapien, eu maximus odio vehicula et. Quisque risus ex, scelerisque et ex non, rhoncus tristique libero. Morbi et nibh facilisis, dictum quam quis, ultrices odio. Quisque nulla orci, aliquam ut ex et, egestas fringilla mauris.&quot;&#xd;
+        },&#xd;
+        {&#xd;
+          &quot;id&quot;: 1020,&#xd;
+          &quot;boolean&quot;: false,&#xd;
+          &quot;string&quot;: &quot;Nunc quis iaculis ipsum. Aliquam mattis sapien eros, a vestibulum sapien dapibus nec. Aenean sem elit, bibendum vel odio eu, tristique mattis mi. Quisque tempor elementum augue sed iaculis. Sed feugiat lectus metus. Donec et lacinia nulla, in rutrum nibh. Proin mollis felis et mi semper laoreet. Sed ut nibh ut nulla imperdiet pharetra sit amet vel ante.&quot;&#xd;
+        }&#xd;
+      ]&#xd;
+    }&#xd;
+  ]&#xd;
+}&#xd;
+</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -62,7 +194,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
@@ -100,7 +232,7 @@
         </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="RESULTS_DIR" elementType="Argument">
             <stringProp name="Argument.name">RESULTS_DIR</stringProp>
@@ -163,7 +295,7 @@
         <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -200,7 +332,7 @@
         <stringProp name="filename">/Users/isakeinberg/Documents/repo/benchmark/log1.csv</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer">
+      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
