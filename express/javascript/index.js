@@ -46,13 +46,16 @@ app.post("/json", (req, res) => {
 });
 
 app.get("/postgres", (req, res) => {
-  connection.query("SELECT * FROM tableone", (err, result) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.json(result.rows);
+  connection.query(
+    "SELECT film_id, title, description FROM film WHERE film.film_id = (SELECT FLOOR(RANDOM() * 1000 + 1)::int)",
+    (err, result) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.json(result.rows);
+      }
     }
-  });
+  );
 });
 
 app.get("/fibonacci", (req, res) => {
