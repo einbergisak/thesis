@@ -1,10 +1,8 @@
 package com.example
 
-import DBRow
-import DBTable
-import DBTable.id
-import DBTable.name
 import EchoData
+import FilmTable
+import Movie
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
@@ -36,14 +34,22 @@ fun Application.configureRouting() {
 
         get("/postgres") {
             try {
-                val rows = transaction {
-                    DBTable.selectAll().map { row ->
-                        DBRow(row[DBTable.name], row[DBTable.id].toString())
-                    }
+                val randomId = (1..1000).random()
+                val result = transaction {
+                    FilmTable
+                        .selectAll().where { FilmTable.film_id eq randomId }
+                        .map {
+                            Movie(
+                                it[FilmTable.film_id],
+                                it[FilmTable.title],
+                                it[FilmTable.description]
+                            )
+                        }
+                        .first()
                 }
-                call.respond(rows)
+                call.respond(result)
             } catch (e: Exception) {
-                call.respondText("${e.message}", status = io.ktor.http.HttpStatusCode.InternalServerError)
+                call.respond(HttpStatusCode.InternalServerError)
             }
         }
 

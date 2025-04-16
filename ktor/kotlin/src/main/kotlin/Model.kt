@@ -1,13 +1,17 @@
 import kotlinx.serialization.Serializable
-import org.jetbrains.exposed.dao.id.UUIDTable
-import java.util.*
+import org.jetbrains.exposed.sql.Table
+
 
 @Serializable
-data class DBRow(
-    val name: String,
-    val id: String,
+data class Movie(
+    val film_id: Int,
+    val title: String,
+    val description: String,
 )
 
-object DBTable : UUIDTable("tableone") {
-    val name = varchar("name", 255)
+
+object FilmTable : Table("film") {
+    val film_id = integer("film_id")
+    val title = varchar("title", 255)
+    val description = varchar("description", 255)
 }
