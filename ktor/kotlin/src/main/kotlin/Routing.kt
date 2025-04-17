@@ -17,7 +17,7 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello World!")
         }
-        get("/lipsum") {
+        get("/lipsum.txt") {
             call.respondFile(File("/tmp/lipsum.txt"))
         }
         post("/json") {
