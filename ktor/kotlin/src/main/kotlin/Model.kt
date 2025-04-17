@@ -3,7 +3,7 @@ import org.jetbrains.exposed.sql.Table
 
 
 @Serializable
-data class Movie(
+data class Film(
     val film_id: Int,
     val title: String,
     val description: String,

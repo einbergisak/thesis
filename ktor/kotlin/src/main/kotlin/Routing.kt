@@ -2,7 +2,7 @@ package com.example
 
 import EchoData
 import FilmTable
-import Movie
+import Film
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
@@ -39,7 +39,7 @@ fun Application.configureRouting() {
                     FilmTable
                         .selectAll().where { FilmTable.film_id eq randomId }
                         .map {
-                            Movie(
+                            Film(
                                 it[FilmTable.film_id],
                                 it[FilmTable.title],
                                 it[FilmTable.description]
