@@ -15,7 +15,7 @@ fun Application.module() {
     }
 
     Database.connect(
-        "jdbc:postgresql://localhost:5432/postgres",
+        "jdbc:postgresql://db:5432/postgres", // Network configured with Docker compose (docker-compose.yml)
         user = "postgres",
         password = "password"
     )

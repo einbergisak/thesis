@@ -1,0 +1,55 @@
+services:
+  app:
+    build:
+      context: ./vapor # UPDATE TO CORRESPONDING FRAMEWORK
+      dockerfile: Dockerfile
+    #platform: linux/amd64 # for local testing on macbook
+    ports:
+      - 8080:8080
+    networks:
+      - nw
+    cpus: 2.0
+    mem_limit: 16g
+    volumes:
+      - ./server_resources/lipsum.txt:/tmp/lipsum.txt
+
+  jmeter:
+    build:
+      context: ./benchmark/jmeter
+      dockerfile: Dockerfile
+    networks:
+      - nw
+    volumes:
+      - ./benchmark/jmeter/plan.jmx:/plan.jmx
+    entrypoint: /bin/bash
+    tty: true
+    cpus: 2.0
+    mem_limit: 16g
+
+  db:
+    image: postgres:17.4
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - ./benchmark/pagila/pagila-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./benchmark/pagila/pagila-data.sql:/docker-entrypoint-initdb.d/02-data.sql
+    networks:
+      - nw
+    cpus: 1.0
+    mem_limit: 4g
+
+  # Remote database management used for debugging
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 9000:8080
+  #   networks:
+  #     - nw
+
+networks:
+  nw:
+    name: nw
+    external: false

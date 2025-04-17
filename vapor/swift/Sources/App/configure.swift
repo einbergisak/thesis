@@ -2,18 +2,12 @@ import Vapor
 import Fluent
 import FluentPostgresDriver
 
-
-// configures your application
 public func configure(_ app: Application) async throws {
-    // uncomment to serve files from /Public folder
-    // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
-
-    
     // Configure Postgres database
     app.databases.use(
         .postgres(
             configuration: .init(
-                hostname: "localhost",
+                hostname: "db",  // Network configured with Docker compose (docker-compose.yml)
                 port: 5432,
                 username: "postgres",
                 password: "password",
@@ -23,9 +17,7 @@ public func configure(_ app: Application) async throws {
         ),
         as: .psql
     )
-    
-    
+
     // register routes
     try routes(app)
 }
-

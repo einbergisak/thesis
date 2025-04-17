@@ -6,7 +6,7 @@ const port = 8080;
 // Configure PostgreSQL connection
 const connection = new Pool({
   user: "postgres",
-  host: "localhost",
+  host: "db", // Network configured with Docker compose (docker-compose.yml)
   database: "postgres",
   password: "password",
   port: 5432,
