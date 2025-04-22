@@ -30,7 +30,7 @@
         </IfController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /lipsum.txt" enabled="true">
-            <stringProp name="HTTPSampler.domain">app</stringProp>
+            <stringProp name="HTTPSampler.domain">${__groovy(props.get(&quot;framework&quot;))}</stringProp>
             <stringProp name="HTTPSampler.port">8080</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
             <stringProp name="HTTPSampler.path">/lipsum.txt</stringProp>
@@ -62,7 +62,7 @@
         </IfController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /postgres" enabled="true">
-            <stringProp name="HTTPSampler.domain">app</stringProp>
+            <stringProp name="HTTPSampler.domain">${__groovy(props.get(&quot;framework&quot;))}</stringProp>
             <stringProp name="HTTPSampler.port">8080</stringProp>
             <stringProp name="HTTPSampler.path">/postgres</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -93,7 +93,7 @@
         </IfController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /json" enabled="true">
-            <stringProp name="HTTPSampler.domain">app</stringProp>
+            <stringProp name="HTTPSampler.domain">${__groovy(props.get(&quot;framework&quot;))}</stringProp>
             <stringProp name="HTTPSampler.port">8080</stringProp>
             <stringProp name="HTTPSampler.path">/json</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -269,7 +269,7 @@
         </IfController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /fibonacci" enabled="true">
-            <stringProp name="HTTPSampler.domain">app</stringProp>
+            <stringProp name="HTTPSampler.domain">${__groovy(props.get(&quot;framework&quot;))}</stringProp>
             <stringProp name="HTTPSampler.port">8080</stringProp>
             <stringProp name="HTTPSampler.path">/fibonacci</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>

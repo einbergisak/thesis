@@ -1,7 +1,33 @@
 services:
-  app:
+  vapor:
     build:
-      context: ./vapor # UPDATE TO CORRESPONDING FRAMEWORK
+      context: ./vapor
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - nw
+    cpus: 2.0
+    mem_limit: 16g
+    volumes:
+      - ./server_resources/lipsum.txt:/tmp/lipsum.txt
+
+  ktor:
+    build:
+      context: ./ktor
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - nw
+    cpus: 2.0
+    mem_limit: 16g
+    volumes:
+      - ./server_resources/lipsum.txt:/tmp/lipsum.txt
+
+  express:
+    build:
+      context: ./express
       dockerfile: Dockerfile
     #platform: linux/amd64 # for local testing on macbook
     ports:
