@@ -1,44 +1,4 @@
 services:
-  vapor:
-    build:
-      context: ./vapor
-      dockerfile: Dockerfile
-    ports:
-      - 8080:8080
-    networks:
-      - nw
-    cpus: 2.0
-    mem_limit: 16g
-    volumes:
-      - ./server_resources/lipsum.txt:/tmp/lipsum.txt
-
-  ktor:
-    build:
-      context: ./ktor
-      dockerfile: Dockerfile
-    ports:
-      - 8080:8080
-    networks:
-      - nw
-    cpus: 2.0
-    mem_limit: 16g
-    volumes:
-      - ./server_resources/lipsum.txt:/tmp/lipsum.txt
-
-  express:
-    build:
-      context: ./express
-      dockerfile: Dockerfile
-    #platform: linux/amd64 # for local testing on macbook
-    ports:
-      - 8080:8080
-    networks:
-      - nw
-    cpus: 2.0
-    mem_limit: 16g
-    volumes:
-      - ./server_resources/lipsum.txt:/tmp/lipsum.txt
-
   jmeter:
     build:
       context: ./benchmark/jmeter
@@ -49,8 +9,17 @@ services:
       - ./benchmark/jmeter/plan.jmx:/plan.jmx
     entrypoint: /bin/bash
     tty: true
-    cpus: 2.0
-    mem_limit: 16g
+    deploy:
+      resources:
+        limits:
+          cpus: 12.0
+          memory: 64g
+        reservations: # Guarantee resources
+          cpus: 12.0
+          memory: 64g
+    mem_limit: 64g
+    memswap_limit: 64g # Disable swap
+    cpuset: "4-15" # 12 cores
 
   db:
     image: postgres:17.4
@@ -63,17 +32,83 @@ services:
       - ./benchmark/pagila/pagila-data.sql:/docker-entrypoint-initdb.d/02-data.sql
     networks:
       - nw
-    cpus: 1.0
-    mem_limit: 4g
+    deploy:
+      resources:
+        limits:
+          cpus: 4.0
+          memory: 16g
+        reservations: # Guarantee resources
+          cpus: 4.0
+          memory: 16g
+    mem_limit: 16g
+    memswap_limit: 16g # Disable swap
+    cpuset: "16-19" # 4 cores
 
-  # Remote database management used for debugging
-  # adminer:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 9000:8080
-  #   networks:
-  #     - nw
+  vapor:
+    build:
+      context: ./vapor
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - nw
+    deploy:
+      resources:
+        limits:
+          cpus: 4.0
+          memory: 16g
+        reservations: # Guarantee resources
+          cpus: 4.0
+          memory: 16g
+    mem_limit: 16g
+    memswap_limit: 16g # Disable swap
+    cpuset: "20-23" # 4 cores
+    volumes:
+      - ./server_resources/lipsum.txt:/tmp/lipsum.txt
+
+  ktor:
+    build:
+      context: ./ktor
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - nw
+    deploy:
+      resources:
+        limits:
+          cpus: 4.0
+          memory: 16g
+        reservations: # Guarantee resources
+          cpus: 4.0
+          memory: 16g
+    mem_limit: 16g
+    memswap_limit: 16g # Disable swap
+    cpuset: "20-23" # 4 cores
+    volumes:
+      - ./server_resources/lipsum.txt:/tmp/lipsum.txt
+
+  express:
+    build:
+      context: ./express
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - nw
+    deploy:
+      resources:
+        limits:
+          cpus: 4.0
+          memory: 16g
+        reservations: # Guarantee resources
+          cpus: 4.0
+          memory: 16g
+    mem_limit: 16g
+    memswap_limit: 16g # Disable swap
+    cpuset: "20-23" # 4 cores
+    volumes:
+      - ./server_resources/lipsum.txt:/tmp/lipsum.txt
 
 networks:
   nw:
