@@ -48,4 +48,5 @@ while [ $(date +%s) -lt $END_TIME ]; do
   echo "$TIMESTAMP,$STATS" >> "$DOCKER_STATS_OUTPUT_FILE"
 done
 
-echo "Saved hardware stats to $DOCKER_STATS_OUTPUT_FILE"
+docker compose down
+echo "Benchmarking completed. Results saved to $JMETER_OUTPUT_FILE and $DOCKER_STATS_OUTPUT_FILE"
