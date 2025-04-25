@@ -12,3 +12,4 @@ vapor/swift/Package.resolved
 .idea/
 jsconfig.json
 *.csv
+benchmark/results/
