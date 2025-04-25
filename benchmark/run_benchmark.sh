@@ -17,6 +17,9 @@ echo "Starting benchmark '$TEST' for $FRAMEWORK with $THREADS threads for $DURAT
 docker compose down
 docker compose up --build --wait -d $FRAMEWORK db
 
+# Create the results directory if it doesn't exist
+mkdir -p results
+
 DOCKER_STATS_OUTPUT_FILE="results/${FRAMEWORK}_${TEST}_T${THREADS}_$(date '+%Y-%m-%d_%H:%M:%S')_DOCKER_STATS.csv"
 JMETER_OUTPUT_FILE="results/${FRAMEWORK}_${TEST}_T${THREADS}_$(date '+%Y-%m-%d_%H:%M:%S')_JMETER_RESULTS.csv"
 
