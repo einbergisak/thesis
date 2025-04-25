@@ -7,7 +7,7 @@
       </elementProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${__groovy(props.get(&quot;threads&quot;))}</stringProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <stringProp name="ThreadGroup.duration">${__groovy(props.get(&quot;duration&quot;))}</stringProp>
@@ -20,11 +20,11 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <intProp name="LoopController.loops">-1</intProp>
         </LoopController>
         <hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
             <stringProp name="IfController.condition">${__groovy(props.get(&quot;test&quot;) == &quot;lipsum&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
@@ -75,7 +75,7 @@
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
                 <collectionProp name="Asserion.test_strings">
                   <stringProp name="49586">200</stringProp>
                 </collectionProp>
@@ -263,7 +263,7 @@
               <hashTree/>
             </hashTree>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
             <stringProp name="IfController.condition">${__groovy(props.get(&quot;test&quot;) == &quot;fibonacci&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
@@ -296,16 +296,6 @@
           </hashTree>
         </hashTree>
       </hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-        <collectionProp name="Arguments.arguments">
-          <elementProp name="TIMESTAMP" elementType="Argument">
-            <stringProp name="Argument.name">TIMESTAMP</stringProp>
-            <stringProp name="Argument.value">${__time(yyyyMMdd-HHmmss)}</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-        </collectionProp>
-      </Arguments>
-      <hashTree/>
       <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
@@ -337,7 +327,7 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">/benchmark_results/${__groovy(props.get(&quot;framework&quot;))}_${__groovy(props.get(&quot;test&quot;))}_T${__groovy(props.get(&quot;threads&quot;))}_${TIMESTAMP}.csv</stringProp>
+        <stringProp name="filename">/results/${__groovy(props.get(&quot;output_file&quot;))}</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>

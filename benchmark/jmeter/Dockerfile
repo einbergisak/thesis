@@ -16,4 +16,4 @@ RUN wget https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz \
 # Add to PATH
 ENV PATH="/opt/apache-jmeter-5.6.3/bin:${PATH}"
 
-#CMD ["jmeter", "-n", "-t", "/testplan.jmx", "-l", "/results.csv", "-JserverHost=localhost", "-JserverPort=8080"]
+ENTRYPOINT ["jmeter"]

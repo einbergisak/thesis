@@ -7,8 +7,7 @@ services:
       - nw
     volumes:
       - ./benchmark/jmeter/plan.jmx:/plan.jmx
-    entrypoint: /bin/bash
-    tty: true
+      - ./benchmark/results:/results
     deploy:
       resources:
         limits:
