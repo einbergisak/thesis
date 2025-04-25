@@ -27,6 +27,8 @@ echo "Timestamp,ContainerName,CPUPerc,MemUsage,MemPerc" > "$DOCKER_STATS_OUTPUT_
 
 # Start the JMeter test, build the image if necessary
 docker compose build jmeter
+
+echo "Running JMeter test for $DURATION seconds..."
 docker compose run -d --rm jmeter \
   -n -t "/plan.jmx" \
   -Jframework=$FRAMEWORK \
@@ -36,6 +38,8 @@ docker compose run -d --rm jmeter \
   -Joutput_file="$JMETER_OUTPUT_FILE"
 
 END_TIME=$(( $(date +%s) + DURATION ))
+
+echo "Collecting hardware stats for $DURATION seconds..."
 
 # Collect hardware stats for the specified duration
 while [ $(date +%s) -lt $END_TIME ]; do

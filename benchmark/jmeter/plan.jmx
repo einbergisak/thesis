@@ -327,7 +327,7 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">/results/${__groovy(props.get(&quot;output_file&quot;))}</stringProp>
+        <stringProp name="filename">/${__groovy(props.get(&quot;output_file&quot;))}</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
