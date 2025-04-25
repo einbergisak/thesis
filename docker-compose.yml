@@ -3,6 +3,8 @@ services:
     build:
       context: ./benchmark/jmeter
       dockerfile: Dockerfile
+    environment:
+      JVM_ARGS: "-Xms1g -Xmx32g"
     networks:
       - nw
     volumes:

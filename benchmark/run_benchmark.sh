@@ -13,7 +13,7 @@ fi
 echo "Running with the following parameters:"
 echo "Starting benchmark '$TEST' for $FRAMEWORK with $THREADS threads for $DURATION seconds"
 
-# Launch the containers
+# Launch the framework and database containers
 docker compose down
 docker compose up --build --wait -d $FRAMEWORK db
 
@@ -25,11 +25,9 @@ JMETER_OUTPUT_FILE="results/${FRAMEWORK}_${TEST}_T${THREADS}_$(date '+%Y-%m-%d_%
 
 echo "Timestamp,ContainerName,CPUPerc,MemUsage,MemPerc" > "$DOCKER_STATS_OUTPUT_FILE"
 
-# Start the JMeter test, build the image if necessary
-docker compose build jmeter
-
+# Start the JMeter test
 echo "Running JMeter test for $DURATION seconds..."
-docker compose run -d --rm jmeter \
+docker compose run --build -d --rm jmeter \
   -n -t "/plan.jmx" \
   -Jframework=$FRAMEWORK \
   -Jtest=$TEST \
