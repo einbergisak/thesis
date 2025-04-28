@@ -6,9 +6,9 @@ DURATION=$4
 DELAYMS=$5
 RAMPUP=$6
 
-if [ "$#" -ne 4 ]; then
+if [ "$#" -ne 6 ]; then
   echo "Error: Invalid number of arguments"
-  echo "Usage: $0 <framework (vapor/ktor/express)> <test (lipsum/json/postgres/fibonacci)> <threads> <duration_in_seconds>"
+  echo "Usage: $0 <framework (vapor/ktor/express)> <test (lipsum/json/postgres/fibonacci)> <threads> <duration_in_seconds> <delay_in_ms> <rampup_in_seconds>"
   exit 1
 fi
 
