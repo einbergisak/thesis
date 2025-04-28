@@ -1,13 +1,20 @@
 #!/bin/bash
-DURATION=120
-
-for THREADS in 10 50 100 200 500; do
+DURATION=150 # 2 min + 30 sec ramp-up
+DELAYMS=0
+RAMPUP=30
+for THREADS in 4 200 500; do
+  if [ "$THREADS" -eq 4 ]; then
+    DELAYMS=1000
+  elif [ "$THREADS" -eq 200 ]; then
+    DELAYMS=250
+  elif [ "$THREADS" -eq 500 ]; then
+    DELAYMS=0
+  fi
   for FRAMEWORK in vapor ktor express; do
     for TEST in lipsum json postgres fibonacci; do
-      echo "Running $TEST benchmark for $FRAMEWORK with $THREADS threads."
-      ./run_benchmark.sh "$FRAMEWORK" "$TEST" "$THREADS" "$DURATION"
-      echo "Benchmark done, starting next one."
-      sleep 3
+      ./run_benchmark.sh "$FRAMEWORK" "$TEST" "$THREADS" "$DURATION" "$DELAYMS" "$RAMPUP"
+      echo "Benchmark done, starting next one in 10 seconds."
+      sleep 10
     done
   done
 done

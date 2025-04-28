@@ -7,9 +7,9 @@
       </elementProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG">
         <stringProp name="ThreadGroup.num_threads">${__groovy(props.get(&quot;threads&quot;))}</stringProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <stringProp name="ThreadGroup.ramp_time">${__groovy(props.get(&quot;rampup&quot;))}</stringProp>
         <stringProp name="ThreadGroup.duration">${__groovy(props.get(&quot;duration&quot;))}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
@@ -20,17 +20,17 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
           <intProp name="LoopController.loops">-1</intProp>
         </LoopController>
         <hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
             <stringProp name="IfController.condition">${__groovy(props.get(&quot;test&quot;) == &quot;lipsum&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /lipsum.txt" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /lipsum.txt">
               <stringProp name="HTTPSampler.domain">${__groovy(props.get(&quot;framework&quot;))}</stringProp>
               <stringProp name="HTTPSampler.port">8080</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -295,24 +295,29 @@
             </hashTree>
           </hashTree>
         </hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
+          <stringProp name="ConstantTimer.delay">/${__groovy(props.get(&quot;delayms&quot;))}</stringProp>
+          <stringProp name="TestPlan.comments">delay in milliseconds</stringProp>
+        </ConstantTimer>
+        <hashTree/>
       </hashTree>
-      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
+      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
           <value class="SampleSaveConfiguration">
             <time>true</time>
             <latency>true</latency>
-            <timestamp>false</timestamp>
+            <timestamp>true</timestamp>
             <success>true</success>
-            <label>false</label>
-            <code>true</code>
+            <label>true</label>
+            <code>false</code>
             <message>false</message>
             <threadName>false</threadName>
             <dataType>false</dataType>
             <encoding>false</encoding>
             <assertions>false</assertions>
-            <subresults>true</subresults>
+            <subresults>false</subresults>
             <responseData>false</responseData>
             <samplerData>false</samplerData>
             <xml>false</xml>
@@ -320,11 +325,9 @@
             <responseHeaders>false</responseHeaders>
             <requestHeaders>false</requestHeaders>
             <responseDataOnError>false</responseDataOnError>
-            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
-            <bytes>true</bytes>
             <idleTime>true</idleTime>
-            <connectTime>true</connectTime>
           </value>
         </objProp>
         <stringProp name="filename">/${__groovy(props.get(&quot;output_file&quot;))}</stringProp>
