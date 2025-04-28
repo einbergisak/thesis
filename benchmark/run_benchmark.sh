@@ -48,7 +48,7 @@ echo "Collecting hardware stats for $DURATION seconds."
 
 # Collect hardware stats for the specified duration
 while [ $(date +%s) -lt $END_TIME ]; do
-  TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+  TIMESTAMP=$(date '+%s%N')
   STATS=$(docker compose stats --no-stream --format "{{.Name}},{{.CPUPerc}},{{.MemUsage}},{{.MemPerc}}" "$FRAMEWORK")
   echo "$TIMESTAMP,$STATS" >> "$DOCKER_STATS_OUTPUT_FILE"
 done
