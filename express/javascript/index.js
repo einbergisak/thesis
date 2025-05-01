@@ -1,7 +1,7 @@
 const express = require("express");
 const cluster = require("node:cluster");
 const numCPUs = require("node:os").availableParallelism();
-const { Pool } = require("pg");
+const { Sequelize, DataTypes } = require("sequelize");
 const app = express();
 const port = 8080;
 
@@ -12,13 +12,33 @@ if (cluster.isPrimary) {
   }
 } else {
   // Configure PostgreSQL connection
-  const connection = new Pool({
-    user: "postgres",
-    host: "db", // Network configured with Docker compose (docker-compose.yml)
-    database: "postgres",
-    password: "password",
+  const sequelize = new Sequelize({
+    dialect: "postgres",
+    host: "db",
     port: 5432,
+    database: "postgres",
+    username: "postgres",
+    password: "password",
   });
+
+  const Film = sequelize.define(
+    "film",
+    {
+      film_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+      },
+      title: {
+        type: DataTypes.STRING,
+      },
+      description: {
+        type: DataTypes.STRING,
+      },
+    },
+    {
+      freezeTableName: true,
+    }
+  );
 
   app.get("/", (req, res) => {
     res.send("Hello world!");
@@ -38,7 +58,7 @@ if (cluster.isPrimary) {
 
   app.post("/json", (req, res) => {
     try {
-      // Receive and parse JSON
+      // Receive JSON
       const data = req.body;
 
       // Check that there is data, as an empty body is parsed as an empty object
@@ -53,17 +73,25 @@ if (cluster.isPrimary) {
     }
   });
 
-  app.get("/postgres", (req, res) => {
-    connection.query(
-      "SELECT film_id, title, description FROM film WHERE film.film_id = (SELECT FLOOR(RANDOM() * 1000 + 1)::int)",
-      (err, result) => {
-        if (err) {
-          res.status(500).send(err);
-        } else {
-          res.json(result.rows);
-        }
+  app.get("/postgres", async (req, res) => {
+    try {
+      const randomId = Math.floor(Math.random() * 1000) + 1;
+
+      const randomFilm = await Film.findOne({
+        where: {
+          film_id: randomId,
+        },
+        attributes: ["film_id", "title", "description"],
+      });
+
+      if (randomFilm) {
+        res.json(randomFilm);
+      } else {
+        res.status(400).send("No film found");
       }
-    );
+    } catch (error) {
+      res.status(500).send("Invalid request");
+    }
   });
 
   app.get("/fibonacci", (req, res) => {
