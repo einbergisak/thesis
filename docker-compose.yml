@@ -23,14 +23,9 @@ services:
     cpuset: "4-11" # 8 cores
 
   db:
-    image: postgres:17.4
-    environment:
-      POSTGRES_PASSWORD: password
-    ports:
-      - 5432:5432
-    volumes:
-      - ./benchmark/pagila/pagila-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
-      - ./benchmark/pagila/pagila-data.sql:/docker-entrypoint-initdb.d/02-data.sql
+    build:
+      context: ./benchmark/postgres
+      dockerfile: Dockerfile
     networks:
       - nw
     deploy:
