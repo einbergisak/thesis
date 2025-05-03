@@ -4,7 +4,7 @@ services:
       context: ./benchmark/jmeter
       dockerfile: Dockerfile
     environment:
-      JVM_ARGS: "-Xms1g -Xmx32g"
+      JVM_ARGS: "-Xms16g -Xmx32g"
     networks:
       - nw
     volumes:
@@ -13,14 +13,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 12.0
+          cpus: 8.0
           memory: 64g
         reservations: # Guarantee resources
-          cpus: 12.0
+          cpus: 8.0
           memory: 64g
     mem_limit: 64g
     memswap_limit: 64g # Disable swap
-    cpuset: "4-15" # 12 cores
+    cpuset: "4-11" # 8 cores
 
   db:
     image: postgres:17.4
@@ -36,14 +36,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 4.0
-          memory: 16g
+          cpus: 8.0
+          memory: 32g
         reservations: # Guarantee resources
-          cpus: 4.0
-          memory: 16g
-    mem_limit: 16g
-    memswap_limit: 16g # Disable swap
-    cpuset: "16-19" # 4 cores
+          cpus: 8.0
+          memory: 32g
+    mem_limit: 32g
+    memswap_limit: 32g # Disable swap
+    cpuset: "12-19" # 8 cores
 
   vapor:
     build:
@@ -57,12 +57,12 @@ services:
       resources:
         limits:
           cpus: 4.0
-          memory: 16g
+          memory: 8g
         reservations: # Guarantee resources
           cpus: 4.0
-          memory: 16g
-    mem_limit: 16g
-    memswap_limit: 16g # Disable swap
+          memory: 8g
+    mem_limit: 8g
+    memswap_limit: 8g # Disable swap
     cpuset: "20-23" # 4 cores
     volumes:
       - ./server_resources/lipsum.txt:/tmp/lipsum.txt
@@ -79,12 +79,12 @@ services:
       resources:
         limits:
           cpus: 4.0
-          memory: 16g
+          memory: 8g
         reservations: # Guarantee resources
           cpus: 4.0
-          memory: 16g
-    mem_limit: 16g
-    memswap_limit: 16g # Disable swap
+          memory: 8g
+    mem_limit: 8g
+    memswap_limit: 8g # Disable swap
     cpuset: "20-23" # 4 cores
     volumes:
       - ./server_resources/lipsum.txt:/tmp/lipsum.txt
@@ -101,12 +101,12 @@ services:
       resources:
         limits:
           cpus: 4.0
-          memory: 16g
+          memory: 8g
         reservations: # Guarantee resources
           cpus: 4.0
-          memory: 16g
-    mem_limit: 16g
-    memswap_limit: 16g # Disable swap
+          memory: 8g
+    mem_limit: 8g
+    memswap_limit: 8g # Disable swap
     cpuset: "20-23" # 4 cores
     volumes:
       - ./server_resources/lipsum.txt:/tmp/lipsum.txt
