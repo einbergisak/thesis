@@ -61,7 +61,7 @@ fun Application.configureRouting() {
                     return fib(n - 1) + fib(n - 2)
                 }
             }
-            call.respond(fib(40))
+            call.respond(fib(28))
         }
     }
 }

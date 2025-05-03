@@ -1,19 +1,19 @@
-import Vapor
-import FluentPostgresDriver
 import Fluent
+import FluentPostgresDriver
+import Vapor
 
-final class Film : Model, @unchecked Sendable, Content {
+final class Film: Model, @unchecked Sendable, Content {
     static let schema = "film"
-    
+
     @ID(custom: "film_id")
     var id: Int?
-    
-    @Field(key:"title")
+
+    @Field(key: "title")
     var title: String
-    
-    @Field(key:"description")
+
+    @Field(key: "description")
     var description: String
-    
+
     init() {}
 }
 
@@ -38,27 +38,27 @@ func routes(_ app: Application) throws {
             throw Abort(.badRequest, reason: "Invalid JSON")
         }
     }
-    
+
     app.get("postgres") { req async throws -> Response in
         do {
             let randomId = Int.random(in: 1...1000)
             let film = try await Film.query(on: req.db(.psql)).filter(\.$id == randomId).first()
 
             return try await film!.encodeResponse(for: req)
-        } catch  {
+        } catch {
             throw Abort(.internalServerError)
         }
     }
-    
-    app.get("fibonacci") {req async throws -> Int in
+
+    app.get("fibonacci") { req async throws -> Int in
         func fib(_ n: Int) -> Int {
             if n <= 1 {
-               return n
+                return n
             } else {
                 return fib(n - 1) + fib(n - 2)
             }
         }
-        
-        return fib(40)
+
+        return fib(28)
     }
 }

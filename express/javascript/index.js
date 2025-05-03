@@ -99,7 +99,7 @@ if (cluster.isPrimary) {
       if (n <= 1) return n;
       return fib(n - 1) + fib(n - 2);
     };
-    res.json(fib(40));
+    res.json(fib(28));
   });
 
   app.listen(port, () => {
