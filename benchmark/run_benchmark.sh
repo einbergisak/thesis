@@ -57,6 +57,6 @@ echo "Finished collecting hardware stats, waiting for JMeter to finish."
 docker compose wait jmeter
 
 echo "JMeter test finished, shutting down containers."
-docker compose down
+docker compose down --remove-orphans --volumes
 
 echo "Benchmarking completed. Results saved to $JMETER_OUTPUT_FILE and $DOCKER_STATS_OUTPUT_FILE"
