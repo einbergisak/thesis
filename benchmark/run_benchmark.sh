@@ -1,6 +1,6 @@
 #!/bin/bash
 FRAMEWORK=$1
-TEST=$2
+SCENARIO=$2
 THREADS=$3
 DURATION=$4
 DELAYMS=$5
@@ -13,7 +13,7 @@ if [ "$#" -ne 6 ]; then
 fi
 
 echo "Running with the following parameters:"
-echo "Starting benchmark '$TEST' for $FRAMEWORK with $THREADS threads for $DURATION seconds, with a delay of $DELAYMS ms and ramp-up time of $RAMPUP seconds."
+echo "Starting benchmark '$SCENARIO' for $FRAMEWORK with $THREADS threads for $DURATION seconds, with a delay of $DELAYMS ms and ramp-up time of $RAMPUP seconds."
 
 # Launch the framework and database containers
 docker compose down
@@ -25,8 +25,8 @@ sleep 10
 # Create the results directory if it doesn't exist
 mkdir -p results
 
-DOCKER_STATS_OUTPUT_FILE="results/${FRAMEWORK}_${TEST}_T${THREADS}_DOCKER_STATS.csv"
-JMETER_OUTPUT_FILE="results/${FRAMEWORK}_${TEST}_T${THREADS}_JMETER_RESULTS.csv"
+DOCKER_STATS_OUTPUT_FILE="results/${FRAMEWORK}_${SCENARIO}_T${THREADS}_DOCKER_STATS.csv"
+JMETER_OUTPUT_FILE="results/${FRAMEWORK}_${SCENARIO}_T${THREADS}_JMETER_RESULTS.csv"
 
 echo "Timestamp,ContainerName,CPUPerc,MemUsage,MemPerc" > "$DOCKER_STATS_OUTPUT_FILE"
 
@@ -35,7 +35,7 @@ echo "Running JMeter test for $DURATION seconds..."
 docker compose run --build -d --rm jmeter \
   -n -t "/plan.jmx" \
   -Jframework=$FRAMEWORK \
-  -Jtest=$TEST \
+  -Jscenario=$SCENARIO \
   -Jthreads=$THREADS \
   -Jduration=$DURATION \
   -Jdelayms=$DELAYMS \

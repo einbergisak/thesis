@@ -27,7 +27,7 @@
         </LoopController>
         <hashTree>
           <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
-            <stringProp name="IfController.condition">${__groovy(props.get(&quot;test&quot;) == &quot;lipsum&quot;)}</stringProp>
+            <stringProp name="IfController.condition">${__groovy(props.get(&quot;scenario&quot;) == &quot;lipsum&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
@@ -64,7 +64,7 @@
             </hashTree>
           </hashTree>
           <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
-            <stringProp name="IfController.condition">${__groovy(props.get(&quot;test&quot;) == &quot;postgres&quot;)}</stringProp>
+            <stringProp name="IfController.condition">${__groovy(props.get(&quot;scenario&quot;) == &quot;postgres&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
@@ -100,7 +100,7 @@
             </hashTree>
           </hashTree>
           <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
-            <stringProp name="IfController.condition">${__groovy(props.get(&quot;test&quot;) == &quot;json&quot;)}</stringProp>
+            <stringProp name="IfController.condition">${__groovy(props.get(&quot;scenario&quot;) == &quot;json&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
@@ -281,7 +281,7 @@
             </hashTree>
           </hashTree>
           <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
-            <stringProp name="IfController.condition">${__groovy(props.get(&quot;test&quot;) == &quot;fibonacci&quot;)}</stringProp>
+            <stringProp name="IfController.condition">${__groovy(props.get(&quot;scenario&quot;) == &quot;fibonacci&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
