@@ -102,17 +102,3 @@ final_df = final_df.sort_values(by=['Framework', 'Scenario', 'Threads', 'RunID']
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 final_df.to_csv(AGGREGATE_PATH, index=False)
-
-# also save means
-avg_df = final_df.groupby(['Framework', 'Scenario', 'Threads']).agg({
-    'Throughput': 'mean',
-    'AvgLatency': 'mean',
-    'TailLatency99': 'mean',
-    'ErrorRate': 'mean',
-    'AvgCPU': 'mean',
-    'AvgMemoryMiB': 'mean'
-})
-
-avg_df = avg_df.sort_values(by=['Scenario', 'Threads', 'Framework'])
-
-avg_df.to_csv(AVERAGE_PATH)
