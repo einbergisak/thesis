@@ -20,14 +20,6 @@ Y_LABELS = {
     'AvgMemoryMiB': 'Mean memory utilization'
 }
 
-UNIT = {
-    'Throughput': 'RPS',
-    'AvgLatency': 'ms',
-    'TailLatency99': 'ms',
-    'ErrorRate': '%',
-    'AvgCPU': '%',
-    'AvgMemoryMiB': 'MiB'}
-
 # Matches the languages' official colors
 framework_colors = {
     'vapor': '#f05138',
@@ -62,7 +54,7 @@ for metric in METRICS:
                 capsize=0.15, # edge size of error bars
             )
 
-            ax.set_xticks(range(4))
+            ax.set_xticks(range(3))
             ax.set_xticklabels([f.capitalize() for f in FRAMEWORKS], fontsize=12)
             ax.set_xlabel(None)
 
@@ -79,5 +71,5 @@ for metric in METRICS:
             ax.grid(visible=True, linewidth=1.0)
 
         plt.subplots_adjust(wspace=0.3, hspace=0.3, right=0.95)
-        file_name = CHARTS_DIR + f'{metric}_{num_threads}.png'
-        plt.savefig(file_name, dpi=300)
+        file_name = CHARTS_DIR + f'{metric}_{num_threads}.svg'
+        plt.savefig(file_name, dpi=600, format='svg')

@@ -59,6 +59,8 @@ for scenario in SCENARIOS:
                 'np2': welch_res['np2'][0] if not welch_res.empty else None,
             })
 
+            unit = UNIT[metric] if UNIT[metric] != '%' else '\%'
+
             # Perform pairwise Games-Howell post-hoc test, only if Welch's ANOVA is significant
             if welch_res['p-unc'][0] < ALPHA:
                 gh_res = pg.pairwise_gameshowell(data=test_df, dv=metric, between='Framework')
@@ -67,9 +69,9 @@ for scenario in SCENARIOS:
                         'Metric': metric,
                         'Scenario': scenario,
                         'Threads': num_threads,
-                        'Comparison': f"{row['A']} vs {row['B']}",
+                        'Comparison': f"{row['A'][:2].capitalize()}/{row['B'][:2].capitalize()}", # First two letters of A/B
                         'p-corr': row['pval'],
-                        'meandiff': row['diff']
+                        f'meandiff': row['diff']
                     })
 
 welch_df = pd.DataFrame(welch_results)
@@ -80,9 +82,7 @@ for item in zero_variance:
     print(f"Framework: {item['Framework']}, scenario: {item['Scenario']}, threads: {item['Threads']}, metric: {item['Metric']}")
 
 welch_df.sort_values(by=['Metric', 'Threads','Scenario'], inplace=True)
-welch_df = welch_df[['Metric', 'Threads', 'Scenario', 'p-unc', 'F', 'np2']]
 gh_df.sort_values(by=['Metric', 'Threads','Scenario'], inplace=True)
-gh_df = gh_df[['Metric', 'Threads', 'Scenario', 'Comparison', 'p-corr', 'meandiff']]
 
 welch_df.to_csv(STATISTICAL_TESTS_DIR+"welch.csv", index=False)
 gh_df.to_csv(STATISTICAL_TESTS_DIR+"games_howell.csv", index=False)
@@ -100,7 +100,7 @@ for metric in METRICS:
         label="tab:welch_"+metric.lower(),
         position='htbp',
     )
-    gh_df[gh_df['Metric'] == metric].drop(columns=['Metric']).to_latex(
+    gh_df[gh_df['Metric'] == metric].rename(columns={'meandiff': f'meandiff ({unit})'}).drop(columns=['Metric']).to_latex(
         STATISTICAL_TESTS_DIR+"games_howell_"+metric.lower()+".tex",
         index=False,
         float_format=lambda x: "0" if x == 0 else ("%.2e" % x if abs(x) < 0.01 else "%.2f" % x),

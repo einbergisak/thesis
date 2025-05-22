@@ -10,6 +10,14 @@ METRICS = [
     'AvgCPU',
     'AvgMemoryMiB'
 ]
+UNIT = {
+    'Throughput': 'RPS',
+    'AvgLatency': 'ms',
+    'TailLatency99': 'ms',
+    'ErrorRate': '%',
+    'AvgCPU': '%',
+    'AvgMemoryMiB': 'MiB'
+}
 
 # Benchmark test configuration
 NUM_RUNS = 50

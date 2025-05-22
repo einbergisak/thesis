@@ -15,13 +15,15 @@ for metric in METRICS:
         Mean='mean',
         SD='std',
     ).reset_index()
-
     descriptive_stats_df['Framework'] = pd.Categorical(descriptive_stats_df['Framework'], categories=FRAMEWORKS, ordered=True)
     descriptive_stats_df['Scenario'] = pd.Categorical(descriptive_stats_df['Scenario'], categories=SCENARIOS, ordered=True)
     descriptive_stats_df.sort_values(by=['Threads', 'Scenario', 'Framework'], inplace=True)
     descriptive_stats_df = descriptive_stats_df[['Threads', 'Scenario', 'Framework', 'Mean', 'SD']]
-    descriptive_stats_df.to_csv(DESCRIPTIVE_DIR+'descriptive_'+metric.lower()+'.csv', index=False)
 
+    unit = UNIT[metric] if UNIT[metric] != '%' else '\%'
+    descriptive_stats_df.rename(columns={'Mean': f'Mean ({unit})', 'SD': f'SD ({unit})'}, inplace=True)
+
+    descriptive_stats_df.to_csv(DESCRIPTIVE_DIR+'descriptive_'+metric.lower()+'.csv', index=False)
     # scenarios in italics for latex output
     descriptive_stats_df['Scenario'] = descriptive_stats_df['Scenario'].apply(lambda x: f"\\textit{{{x}}}")
     descriptive_stats_df.to_latex(
@@ -30,5 +32,5 @@ for metric in METRICS:
         float_format="%.2f",
         label='tab:descriptive_'+metric.lower(),
         caption='Descriptive statistics for '+metric+'.',
-        position='h!',
+        position='htb',
     )
