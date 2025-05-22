@@ -13,4 +13,5 @@ vapor/swift/Package.resolved
 jsconfig.json
 *.csv
 benchmark/results/
-analysis/output/
+analysis/output/*
+!analysis/output/aggregated_results.csv
