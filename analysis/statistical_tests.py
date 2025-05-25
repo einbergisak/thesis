@@ -96,15 +96,15 @@ for metric in METRICS:
         STATISTICAL_TESTS_DIR+"welch_"+metric.lower()+".tex",
         index=False,
         float_format=lambda x: "0" if x == 0 else ("%.2e" % x if abs(x) < 0.01 else "%.2f" % x),
-        caption="Welch's ANOVA results for "+metric+".",
+        caption="Welch's ANOVA results for "+METRIC_LABELS[metric]+".",
         label="tab:welch_"+metric.lower(),
-        position='htbp',
+        position='htb',
     )
     gh_df[gh_df['Metric'] == metric].rename(columns={'meandiff': f'meandiff ({unit})'}).drop(columns=['Metric']).to_latex(
         STATISTICAL_TESTS_DIR+"games_howell_"+metric.lower()+".tex",
         index=False,
         float_format=lambda x: "0" if x == 0 else ("%.2e" % x if abs(x) < 0.01 else "%.2f" % x),
-        caption="Games-Howell post-hoc test results for "+metric+".",
+        caption="Games-Howell post-hoc test results for "+METRIC_LABELS[metric]+".",
         label="tab:games_howell_"+metric.lower(),
-        position='htbp',
+        position='htb',
     )

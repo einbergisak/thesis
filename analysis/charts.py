@@ -11,15 +11,6 @@ df = pd.read_csv(AGGREGATE_PATH)
 
 sb.set_theme(style="whitegrid")
 
-Y_LABELS = {
-    'Throughput': 'Throughput',
-    'AvgLatency': 'Mean latency',
-    'TailLatency99': '99th percentile tail latency',
-    'ErrorRate': 'Error rate',
-    'AvgCPU': 'Mean CPU utilization',
-    'AvgMemoryMiB': 'Mean memory utilization'
-}
-
 # Matches the languages' official colors
 framework_colors = {
     'vapor': '#f05138',
@@ -32,7 +23,7 @@ for metric in METRICS:
 
         fig, axes = plt.subplots(2, 2, figsize=(8, 8))
 
-        fig.suptitle(f'{Y_LABELS[metric]} at {num_threads} concurrent users (mean +/- SD)', fontsize=16, y=0.955)
+        fig.suptitle(f'{METRIC_LABELS[metric]} at {num_threads} concurrent users (mean +/- SD)', fontsize=16, y=0.955)
 
         for i, scenario in enumerate(SCENARIOS):
             row, col = divmod(i, 2)
@@ -62,7 +53,7 @@ for metric in METRICS:
             ax.yaxis.set_major_locator(ticker.MaxNLocator("auto"))
 
             if col == 0:  # only show label for first column in the grid
-                ax.set_ylabel(f"{Y_LABELS[metric]} ({UNIT[metric]})", fontsize=14)
+                ax.set_ylabel(f"{METRIC_LABELS[metric]} ({UNIT[metric]})", fontsize=14)
             else:
                 ax.set_ylabel('')
 

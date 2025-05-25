@@ -10,6 +10,14 @@ METRICS = [
     'AvgCPU',
     'AvgMemoryMiB'
 ]
+METRIC_LABELS = {
+    'Throughput': 'Throughput',
+    'AvgLatency': 'Mean latency',
+    'TailLatency99': '99th percentile tail latency',
+    'ErrorRate': 'Error rate',
+    'AvgCPU': 'Mean CPU utilization',
+    'AvgMemoryMiB': 'Mean memory utilization'
+}
 UNIT = {
     'Throughput': 'RPS',
     'AvgLatency': 'ms',
