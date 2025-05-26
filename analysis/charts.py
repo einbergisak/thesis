@@ -23,7 +23,7 @@ for metric in METRICS:
 
         fig, axes = plt.subplots(2, 2, figsize=(8, 8))
 
-        fig.suptitle(f'{METRIC_LABELS[metric]} at {num_threads} concurrent users (mean +/- SD)', fontsize=16, y=0.955)
+       # fig.suptitle(f'{METRIC_LABELS[metric]} at {num_threads} concurrent users (mean +/- SD)', fontsize=16, y=0.955)
 
         for i, scenario in enumerate(SCENARIOS):
             row, col = divmod(i, 2)
@@ -46,14 +46,16 @@ for metric in METRICS:
             )
 
             ax.set_xticks(range(3))
-            ax.set_xticklabels([f.capitalize() for f in FRAMEWORKS], fontsize=12)
+            ax.set_xticklabels([f.capitalize() for f in FRAMEWORKS], fontsize=12, fontweight='bold')
             ax.set_xlabel(None)
-
-            ax.set_title(f'Scenario: {scenario}', fontsize=14)
+            ax.set_title(f'Scenario: {scenario}', fontsize=14, fontweight='bold')
             ax.yaxis.set_major_locator(ticker.MaxNLocator("auto"))
 
+            for label in ax.get_yticklabels():
+                label.set_fontweight('bold')
+
             if col == 0:  # only show label for first column in the grid
-                ax.set_ylabel(f"{METRIC_LABELS[metric]} ({UNIT[metric]})", fontsize=14)
+                ax.set_ylabel(f"{METRIC_LABELS[metric]} ({UNIT[metric]})", fontsize=14, fontweight='bold')
             else:
                 ax.set_ylabel('')
 

@@ -32,6 +32,5 @@ for metric in METRICS:
         float_format="%.2f",
         label='tab:descriptive_'+metric.lower(),
         caption='Descriptive statistics for '+METRIC_LABELS[metric]+'.',
-        position='htb',
-        longtable=True,
+        position='htbp',
     )
