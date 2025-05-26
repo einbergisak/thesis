@@ -41,8 +41,8 @@ for metric in METRICS:
                 hue_order=FRAMEWORKS,
                 estimator=np.mean,
                 errorbar='sd', # standard deviation error bars
-                err_kws = {'linewidth': 1.5}, # width of error bar lines
-                capsize=0.15, # edge size of error bars
+                err_kws = {'linewidth': 1.8}, # width of error bar lines
+                capsize=0.2, # edge size of error bars
             )
 
             ax.set_xticks(range(3))
@@ -61,6 +61,6 @@ for metric in METRICS:
             ax.tick_params(axis='y', labelsize=11)
             ax.grid(visible=True, linewidth=1.0)
 
-        plt.subplots_adjust(wspace=0.3, hspace=0.3, right=0.95)
+        fig.tight_layout(rect=[0, 0.03, 1, 0.95])
         file_name = CHARTS_DIR + f'{metric}_{num_threads}.svg'
-        plt.savefig(file_name, dpi=600, format='svg')
+        plt.savefig(file_name, dpi=600, format='svg', bbox_inches='tight')
